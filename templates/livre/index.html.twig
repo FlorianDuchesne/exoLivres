@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres{% endblock %}
+
+{% block contenu %}
+<table class="table table-striped table-hover table-sm">
+    <thead>
+        <tr>
+            <th>TITRE</th>
+            <th>PRIX</th>
+            <th>NOMBRE PAGES</th>
+            <th>PARUTION</th>
+            <th>AUTEUR</th>
+            <th>MODIFICATION</th>
+            <th>SUPPRIMER</th>
+        </tr>
+    <thead>
+    <tbody>
+    {% for livre in livres %}
+    <tr>
+        <td>
+        <a href=" {{ path('livre_show', {'id':livre.id}) }}">
+        {{ livre.titre }}
+        </a>
+        </td>
+        {# <td>{{ livre.resume }}</td> #}
+        <td>{{ livre.prix }}</td>
+        <td>{{ livre.nbPages }}</td>
+        <td>{{ livre.dateParution | date('d/m/Y') }}</td>
+        <td><a href=" {{ path('auteur_show', {'id':livre.auteur.id}) }}">{{ livre.auteur }}</a></td>
+        <td><a class="btn btn-warning rounded-pill" href="{{ path('livre_edit', {'id':livre.id}) }}">Modifier</a></td>
+        <td><a class="btn btn-danger rounded-pill" href="{{ path('livre_delete', {'id':livre.id}) }}">Supprimer</a></td> 
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-success rounded-pill" href=" {{ path('livre_add')}}">Ajouter un livre</a>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur{% endblock %}
+
+{% block contenu %}
+<h1>{{ auteur.prenom ~ ' ' ~ auteur.nom }}</h1>
+
+<h2>Bibliographie<h2>
+<table>
+    {% for livre in livres %}
+      <tr><td>        <a href=" {{ path('livre_show', {'id':livre.id}) }}"><small>
+        {{ livre.titre }}
+        </small></a>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{# Pour info, version Mickaël : #}
+
+    {# <h3>Bibliographie</h3>
+    {% if auteur.livres | length == 0 %}
+        <span class="uk-label">Aucun livre pour cet auteur</span>
+    {% else %}
+        <table class="uk-table uk-table-striped uk-table-responsive">
+            <thead>
+                <tr>
+                    <th>LIVRE</th>
+                    <th>DATE PARUTION</th>
+                </tr>
+            </thead>
+            <tbody>    
+            {% for livre in auteur.livres %}
+                <tr>
+                    <td><a href="{{ path('livre_show', {id: livre.id}) }}">{{ livre }}</a></td>
+                    <td>{{ livre.dateparution | date('d-m-Y') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>  
+    {% endif %} #}

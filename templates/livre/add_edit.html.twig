@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout livre{% endblock %}
+
+{% block contenu %}
+  {% if editMode %}
+    <h1>Modification d'un livre</h1>
+  {% else %}
+<h1>Ajout d'un livre</h1>
+  {% endif %}
+<div class="m-auto col-3">
+{{ form(formAddLivre) }}
+</div>
+{% endblock %}
